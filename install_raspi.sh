@@ -115,15 +115,15 @@ fi
 
 echo
 #####
-echo "$C>Shell and locale settings...$NC"
+echo "$C>Shell settings...$NC"
 #####
 
 curl -sL "https://gist.githubusercontent.com/lmzdev/41f545d9eb93c66d1ef72658ed7026c7/raw/" > ~/.bash_aliases
 curl -sL "https://raw.githubusercontent.com/lmzdev/rpi_tools/main/.bashrc" > ~/.bashrc
 
+#fet.sh is a minimal fetch script
 sudo wget "https://raw.githubusercontent.com/6gk/fet.sh/master/fet.sh" -P "/usr/local/bin"
 sudo chmod 755 "/usr/local/bin/fet.sh"
-
 
 echo "$C>Raspi-Config settings in non-interactive mode...$NC"
 sudo raspi-config nonint do_i2c 0
