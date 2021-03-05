@@ -97,14 +97,14 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]];then
     # if you run into errors, check if your apt proxy allows/bypasses https:// urls
     sudo apt-get -qq update && sudo apt-get -y install gnupg2 dirmngr
-    INSTALL_KEY=379CE192D401AB61, so
+    INSTALL_KEY=379CE192D401AB61
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $INSTALL_KEY
     echo "deb https://ookla.bintray.com/debian generic main" | sudo tee  /etc/apt/sources.list.d/speedtest.list
     sudo apt-get -qq update && sudo apt-get -y install speedtest
 fi
 
 echo 
-read -p "$C>Install Raspi-Desktop (~1.5 GB)? [Y/n] $NC" -n 1 -r
+read -p "$C>Install minimal Raspi-Desktop (~1.5 GB)? [Y/n] $NC" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -118,6 +118,8 @@ echo
 echo "$C>Shell and locale settings...$NC"
 #####
 
+curl -sL "https://gist.githubusercontent.com/lmzdev/41f545d9eb93c66d1ef72658ed7026c7/raw/" > ~/.bash_aliases
+curl -sL "https://raw.githubusercontent.com/lmzdev/rpi_tools/main/.bashrc" > ~/.bashrc
 
 sudo wget "https://raw.githubusercontent.com/6gk/fet.sh/master/fet.sh" -P "/usr/local/bin"
 sudo chmod 755 "/usr/local/bin/fet.sh"

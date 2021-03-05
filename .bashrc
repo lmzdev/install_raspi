@@ -111,3 +111,4 @@ fi
 ctemp=$(vcgencmd measure_temp)
 linuxlogo -F "$(whoami)@#H\n$(lsb_release -ds)\n#U\nCPU Temp: ${ctemp:5}"
 echo " "$(date +"%d.%m.%y - %H:%M ")" " |  toilet -f term --filter border
+
