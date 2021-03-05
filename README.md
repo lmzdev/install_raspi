@@ -9,4 +9,4 @@ See also:
 
 
 ## Usage
-- Copy to Raspberry Pi, ```chmod +x```, execute
+- Copy ```install_raspi.sh``` to Raspberry Pi, ```chmod +x```, execute
