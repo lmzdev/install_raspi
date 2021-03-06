@@ -10,3 +10,7 @@ See also:
 
 ## Usage
 - Copy ```install.sh``` to Raspberry Pi, ```chmod +x install.sh```, execute
+
+----
+
+![screenshot](scrn.jpg)
