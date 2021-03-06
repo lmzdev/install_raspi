@@ -42,7 +42,7 @@ curl -L "https://gist.githubusercontent.com/lmzdev/21b683d4461f821107bced42a9d80
 chmod +x ~/update.sh
 
 
-FILE=".ssh/id_rsa"
+FILE="/home/pi/.ssh/id_rsa"
 if [[ ! -f "$FILE" ]]; then
     echo "$C>SSH Setup...$NC"
     ssh-keygen #-b 3072
@@ -100,7 +100,7 @@ if [[ $REPLY =~ ^[Yy]$ ]];then
     sudo apt-get -qq update && sudo apt-get -y install speedtest
 fi
 
-read -p "$C>Install minimal Raspi-Desktop (~1.5 GB)? [Y/n] $NC" -n 1 -r
+read -p "$C>Install minimal Raspbian-Desktop (~1.5 GB)? [Y/n] $NC" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -114,7 +114,7 @@ echo "$C>Shell settings...$NC"
 
 echo "" | sudo tee /etc/motd
 curl -sL "https://gist.githubusercontent.com/lmzdev/41f545d9eb93c66d1ef72658ed7026c7/raw/" > ~/.bash_aliases
-curl -sL "https://raw.githubusercontent.com/lmzdev/rpi_tools/main/.bashrc" > ~/.bashrc
+curl -sL "https://raw.githubusercontent.com/lmzdev/install_raspi/main/.bashrc" > ~/.bashrc
 
 #fet.sh is a minimal fetch script
 sudo wget -q "https://raw.githubusercontent.com/6gk/fet.sh/master/fet.sh" -P "/usr/local/bin"
@@ -124,7 +124,6 @@ echo "$C>Raspi-Config settings in non-interactive mode...$NC"
 sudo raspi-config nonint do_i2c 0
 sudo raspi-config nonint do_onewire 0
 sudo raspi-config nonint do_rgpio 0
-#sudo raspi-config nonint do_expand_rootfs
 
 sudo dpkg-reconfigure locales
 
