@@ -10,8 +10,7 @@ C=`tput setaf 6`
 NC=`tput sgr0`
 
 clear -x
-echo "$C#################################"
-echo "# Welcome $(whoami)@$(hostname)"
+echo "$C# Welcome $(whoami)@$(hostname)"
 echo "#################################$NC"
 
 read -p "$C>Do rpi-update now? [Y/n] $NC" -n 1 -r
@@ -37,9 +36,8 @@ sudo apt-get -q update
 echo "$C>Upgrading...$NC"
 sudo apt-get -qq -y upgrade
 
-#####
+echo
 echo "$C>Prerequisites...$NC"
-#####
 curl -L "https://gist.githubusercontent.com/lmzdev/21b683d4461f821107bced42a9d801fb/raw/" > ~/update.sh
 chmod +x ~/update.sh
 
@@ -50,20 +48,19 @@ if [[ ! -f "$FILE" ]]; then
     ssh-keygen #-b 3072
 fi
 
-
-#####
+echo
 echo "$C>Installing new Packages...$NC"
-#####
-sudo apt-get -y -qq install dnsutils vim build-essential mc apt-transport-https net-tools toilet linuxlogo highlight htop tty-clock git git-lfs curl wget zsh
+sudo apt-get -y -q install dnsutils vim build-essential mc apt-transport-https net-tools nmap toilet linuxlogo highlight htop tty-clock git git-lfs curl wget zsh
 
 
 read -p "$C>Install python3, pip3 and GPIO dependencies? [Y/n] $NC" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    sudo apt-get -y install python3-pip python-smbus wiringpi pigpio python-pigpio python3-pigpio raspi-gpio python-gpiozero python3-gpiozero python3-rpi.gpio i2c-tools python3-venv
+    sudo apt-get -y install python3-pip python-smbus wiringpi pigpio python-pigpio python3-pigpio python-gpiozero python3-gpiozero python3-rpi.gpio i2c-tools python3-venv
     python --version
-    python3 --versiondirmngr
+    python3 --version
+    echo
     pip3 install virtualenv paho-mqtt RPi.GPIO
 fi
 
@@ -96,7 +93,7 @@ read -p "$C>Install Ookla Speedtest CLI? [Y/n] $NC" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]];then
     # if you run into errors, check if your apt proxy allows/bypasses https:// urls
-    sudo apt-get -qq update && sudo apt-get -y install gnupg2 dirmngr
+    sudo apt-get -y install gnupg2
     INSTALL_KEY=379CE192D401AB61
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $INSTALL_KEY
     echo "deb https://ookla.bintray.com/debian generic main" | sudo tee  /etc/apt/sources.list.d/speedtest.list
@@ -114,15 +111,13 @@ then
 fi
 
 echo
-#####
 echo "$C>Shell settings...$NC"
-#####
 
 curl -sL "https://gist.githubusercontent.com/lmzdev/41f545d9eb93c66d1ef72658ed7026c7/raw/" > ~/.bash_aliases
 curl -sL "https://raw.githubusercontent.com/lmzdev/rpi_tools/main/.bashrc" > ~/.bashrc
 
 #fet.sh is a minimal fetch script
-sudo wget "https://raw.githubusercontent.com/6gk/fet.sh/master/fet.sh" -P "/usr/local/bin"
+sudo wget -s "https://raw.githubusercontent.com/6gk/fet.sh/master/fet.sh" -P "/usr/local/bin"
 sudo chmod 755 "/usr/local/bin/fet.sh"
 
 echo "$C>Raspi-Config settings in non-interactive mode...$NC"
@@ -147,6 +142,5 @@ if [[ "$newhost" ]]; then
     sudo sed -i "s/$hostn/$newhost/g" /etc/hostname
 fi
 
-echo
 echo "$C>Finished, please reboot and raspi-config later!$NC"
 echo
