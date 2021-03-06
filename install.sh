@@ -100,7 +100,6 @@ if [[ $REPLY =~ ^[Yy]$ ]];then
     sudo apt-get -qq update && sudo apt-get -y install speedtest
 fi
 
-echo 
 read -p "$C>Install minimal Raspi-Desktop (~1.5 GB)? [Y/n] $NC" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
