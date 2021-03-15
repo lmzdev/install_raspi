@@ -92,7 +92,7 @@ function set_bash_prompt () {
   # Set the BRANCH variable.
   BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null)
   if [ $? == 0 ] ; then
-    BRANCH=" $COL_BOLD$COL_SEC$BRANCH$NC"
+    BRANCH=" $COL_BOLD$COL_SEC$BRANCH$NC "
   fi
 
   # Set the bash prompt variable.
