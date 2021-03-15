@@ -44,7 +44,12 @@ fi
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
+COL_BLUE=`tput setaf 4`
+COL_TEAL=`tput setaf 6` #10
+COL_GREY=`tput setaf 0`
+COL_UL=`tput sgr 0 1`
+COL_BOLD=`tput bold`
+NC=`tput sgr0`
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -73,48 +78,37 @@ echo " "$(date +"%d.%m.%y - %H:%M ")" " |  toilet -f term --filter border
 unset ctemp
 
 
-############# PS1 Settings
-
-# Detect whether the current directory is a git repository.
-function is_git_repository {
-  git branch > /dev/null 2>&1
-}
-
+# Prompt Settings
 function set_bash_prompt () {
-  # Set the PROMPT_SYMBOL variable. We do this first so we don't lose the
-  # return value of the last command.
-  PROMPT_SYM='❯ '
+  PROMPT_SYM="$COL_BLUE❯$NC "
 
   # Set the PYTHON_VIRTUALENV variable.
   if test -z "$VIRTUAL_ENV" ; then
-      PYTHON_VIRTUALENV=""
+      PYTHON_VIRTUALENV=''
   else
-      PYTHON_VIRTUALENV='\[\033[0;37m\](`basename \"$VIRTUAL_ENV\"`)\[\033[00m\]'
+      PYTHON_VIRTUALENV="$COL_BOLD$COL_GREY[`basename \"$VIRTUAL_ENV\"`]$NC "
   fi
 
   # Set the BRANCH variable.
-  if is_git_repository ; then
-    BRANCH=$(git symbolic-ref --short HEAD)
-    BRANCH=' \[\033[1;32m\]$BRANCH\[\033[00m\] '
-  else
-    BRANCH=''
+  BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null)
+  if [ $? == 0 ] ; then
+    BRANCH=" $COL_UL$COL_TEAL$BRANCH$NC"
   fi
 
   # Set the bash prompt variable.
-  PS1='${PYTHON_VIRTUALENV}${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\w${BRANCH}${PROMPT_SYM}\[\033[00m\]'
+  PS1='${PYTHON_VIRTUALENV}${debian_chroot:+($debian_chroot)}$COL_BLUE\w$NC${BRANCH}${PROMPT_SYM}'
 
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0; \u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+  # If this is an xterm set the title to user@host:dir
+  case "$TERM" in
+  xterm*|rxvt*)
+      PS1="\[\e]0; \u@\h: \w\a\]$PS1"
+      ;;
+  *)
+      ;;
+  esac
 
 }
 
 # Tell bash to execute this function just before displaying its prompt.
 PROMPT_COMMAND=set_bash_prompt
-
