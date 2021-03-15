@@ -114,7 +114,7 @@ echo "$C>Shell settings...$NC"
 
 echo "" | sudo tee /etc/motd
 curl -sL "https://gist.githubusercontent.com/lmzdev/41f545d9eb93c66d1ef72658ed7026c7/raw/" > ~/.bash_aliases
-curl -sL "https://raw.githubusercontent.com/lmzdev/install_raspi/main/.bash_prompt" > ~/.bash_prompt
+curl -sL "https://gist.githubusercontent.com/lmzdev/c03befd8b90a5851c1d96d78904ed39a/raw/" > ~/.bash_prompt
 curl -sL "https://raw.githubusercontent.com/lmzdev/install_raspi/main/.bashrc" > ~/.bashrc
 
 #fet.sh is a minimal fetch script
