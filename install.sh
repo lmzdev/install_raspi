@@ -114,6 +114,7 @@ echo "$C>Shell settings...$NC"
 
 echo "" | sudo tee /etc/motd
 curl -sL "https://gist.githubusercontent.com/lmzdev/41f545d9eb93c66d1ef72658ed7026c7/raw/" > ~/.bash_aliases
+curl -sL "https://raw.githubusercontent.com/lmzdev/install_raspi/main/.bash_prompt" > ~/.bash_prompt
 curl -sL "https://raw.githubusercontent.com/lmzdev/install_raspi/main/.bashrc" > ~/.bashrc
 
 #fet.sh is a minimal fetch script
@@ -131,6 +132,7 @@ echo "$C>Change password (or leave empty): $NC"
 read newpassw
 if [[ "$newpassw" ]]; then
     echo "pi:$newpassw" | sudo chpasswd
+    unset newpassw
 fi
 
 echo "$C>Change hostname (or leave empty): $NC"
