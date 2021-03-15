@@ -44,12 +44,11 @@ fi
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# set values for prompt
 COL_PRIM=`tput setaf 4`
-COL_SEC=`tput setaf 10` #6
-COL_DARK=`tput setaf 25` #0
-COL_UL=`tput sgr 0 1`
-COL_BOLD=`tput bold`
 NC=`tput sgr0`
+PROMPT_SYM="$COL_PRIM❯$NC "
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -77,38 +76,12 @@ linuxlogo -F "$(whoami)@#H\n$(lsb_release -ds)\n#U\nCPU Temp: ${ctemp:5}"
 echo " "$(date +"%d.%m.%y - %H:%M ")" " |  toilet -f term --filter border
 unset ctemp
 
-
-# Prompt Settings
-function set_bash_prompt () {
-  PROMPT_SYM="$COL_PRIM❯$NC "
-
-  # Set the PYTHON_VIRTUALENV variable.
-  if test -z "$VIRTUAL_ENV" ; then
-      PYTHON_VIRTUALENV=''
-  else
-      PYTHON_VIRTUALENV="$COL_DARK[`basename \"$VIRTUAL_ENV\"`]$NC "
-  fi
-
-  # Set the BRANCH variable.
-  BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null)
-  if [ $? == 0 ] ; then
-    BRANCH=" $COL_BOLD$COL_SEC$BRANCH$NC "
-  fi
-
-  # Set the bash prompt variable.
-  PS1='${PYTHON_VIRTUALENV}${debian_chroot:+($debian_chroot)}$COL_PRIM\w$NC${BRANCH}${PROMPT_SYM}'
+# create a static PS1 if there is no .bash_prompt to be sourced
+PS1='${debian_chroot:+[$debian_chroot] }$COL_PRIM\w${PROMPT_SYM}'
+PS1="\[\e]0; \u@\h: \w\a\]$PS1"
 
 
-  # If this is an xterm set the title to user@host:dir
-  case "$TERM" in
-  xterm*|rxvt*)
-      PS1="\[\e]0; \u@\h: \w\a\]$PS1"
-      ;;
-  *)
-      ;;
-  esac
+if [ -f ~/.bash_prompt ]; then
+    . ~/.bash_prompt
+fi
 
-}
-
-# Tell bash to execute this function just before displaying its prompt.
-PROMPT_COMMAND=set_bash_prompt
