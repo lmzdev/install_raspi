@@ -80,6 +80,9 @@ unset ctemp
 PS1="${debian_chroot:+[$debian_chroot] }$COL_PRIM\w${PROMPT_SYM}"
 PS1="\[\e]0; \u@\h: \w\a\]$PS1"
 
+if command -v fzf > /dev/null ; then
+  . /usr/share/doc/fzf/examples/key-bindings.bash
+fi
 
 if [ -f ~/.bash_prompt ]; then
     . ~/.bash_prompt
