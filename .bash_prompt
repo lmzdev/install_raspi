@@ -2,7 +2,7 @@
 
 COL_PRIM=`tput setaf 4`
 COL_SEC=`tput setaf 10`
-COL_DARK=`tput setaf 25`
+COL_DARK=`tput setaf 24`
 COL_UL=`tput sgr 0 1`
 COL_BOLD=`tput bold`
 NC=`tput sgr0`
