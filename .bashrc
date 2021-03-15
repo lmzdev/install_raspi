@@ -44,9 +44,9 @@ fi
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-COL_BLUE=`tput setaf 4`
-COL_TEAL=`tput setaf 6` #10
-COL_GREY=`tput setaf 0`
+COL_PRIM=`tput setaf 4`
+COL_SEC=`tput setaf 10` #6
+COL_DARK=`tput setaf 25` #0
 COL_UL=`tput sgr 0 1`
 COL_BOLD=`tput bold`
 NC=`tput sgr0`
@@ -80,23 +80,23 @@ unset ctemp
 
 # Prompt Settings
 function set_bash_prompt () {
-  PROMPT_SYM="$COL_BLUE❯$NC "
+  PROMPT_SYM="$COL_PRIM❯$NC "
 
   # Set the PYTHON_VIRTUALENV variable.
   if test -z "$VIRTUAL_ENV" ; then
       PYTHON_VIRTUALENV=''
   else
-      PYTHON_VIRTUALENV="$COL_BOLD$COL_GREY[`basename \"$VIRTUAL_ENV\"`]$NC "
+      PYTHON_VIRTUALENV="$COL_DARK[`basename \"$VIRTUAL_ENV\"`]$NC "
   fi
 
   # Set the BRANCH variable.
   BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null)
   if [ $? == 0 ] ; then
-    BRANCH=" $COL_UL$COL_TEAL$BRANCH$NC"
+    BRANCH=" $COL_BOLD$COL_SEC$BRANCH$NC"
   fi
 
   # Set the bash prompt variable.
-  PS1='${PYTHON_VIRTUALENV}${debian_chroot:+($debian_chroot)}$COL_BLUE\w$NC${BRANCH}${PROMPT_SYM}'
+  PS1='${PYTHON_VIRTUALENV}${debian_chroot:+($debian_chroot)}$COL_PRIM\w$NC${BRANCH}${PROMPT_SYM}'
 
 
   # If this is an xterm set the title to user@host:dir
