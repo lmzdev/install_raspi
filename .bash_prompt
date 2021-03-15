@@ -1,16 +1,24 @@
 # Dynamically create prompt line
 
-COL_PRIM=`tput setaf 4`
-COL_SEC=`tput setaf 10`
-COL_DARK=`tput setaf 25`
-COL_UL=`tput sgr 0 1`
-COL_BOLD=`tput bold`
-NC=`tput sgr0`
+COL_PRIM="\[`tput setaf 4`\]"
+COL_SEC="\[`tput setaf 10`\]"
+COL_DARK="\[`tput setaf 25`\]"
+COL_DANGER="\[`tput setaf 5`\]"
+COL_UL="\[`tput sgr 0 1`\]"
+COL_BOLD="\[`tput bold`\]"
+NC="\[`tput sgr0`\]"
 PROMPT_SYM="$COL_PRIM❯$NC "
 
 function set_bash_prompt () {
+
+  if [ $? == 0 ] ; then 
+    PROMPT_SYM="$COL_PRIM❯$NC "
+  else
+    PROMPT_SYM="$COL_DANGER❯$NC "
+  fi
+
   # Set the PYTHON_VIRTUALENV variable.
-  if test -z "$VIRTUAL_ENV" ; then
+  if [ -z "$VIRTUAL_ENV" ] ; then
       PYTHON_VIRTUALENV=''
   else
       PYTHON_VIRTUALENV="$COL_DARK[`basename \"$VIRTUAL_ENV\"`]$NC "
@@ -18,13 +26,13 @@ function set_bash_prompt () {
 
   # Set the BRANCH variable.
   BRANCH=$(git symbolic-ref --short HEAD 2> /dev/null)
-  if [ $? == 0 ] ; then
-  # test -z "$BRANCH" ; then
+  #if [ $? == 0 ] ; then
+  if [ -n "$BRANCH" ] ; then
     BRANCH=" $COL_BOLD$COL_SEC$BRANCH$NC "
   fi
 
   # Set the bash prompt variable.
-  PS1='${PYTHON_VIRTUALENV}${debian_chroot:+$COL_DARK[$debian_chroot]$NC }$COL_PRIM\w$NC${BRANCH}${PROMPT_SYM}'
+  PS1="${PYTHON_VIRTUALENV}${debian_chroot:+$COL_DARK[$debian_chroot]$NC }$COL_PRIM\w$NC${BRANCH}$PROMPT_SYM"
   # set the title to user@host:dir
   PS1="\[\e]0; \u@\h: \w\a\]$PS1"
 

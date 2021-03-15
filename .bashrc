@@ -46,8 +46,8 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # set values for prompt
-COL_PRIM=`tput setaf 4`
-NC=`tput sgr0`
+COL_PRIM="\[`tput setaf 4`\]"
+NC="\[`tput sgr0`\]"
 PROMPT_SYM="$COL_PRIM❯$NC "
 
 # Alias definitions.
@@ -77,11 +77,10 @@ echo " "$(date +"%d.%m.%y - %H:%M ")" " |  toilet -f term --filter border
 unset ctemp
 
 # create a static PS1 if there is no .bash_prompt to be sourced
-PS1='${debian_chroot:+[$debian_chroot] }$COL_PRIM\w${PROMPT_SYM}'
+PS1="${debian_chroot:+[$debian_chroot] }$COL_PRIM\w${PROMPT_SYM}"
 PS1="\[\e]0; \u@\h: \w\a\]$PS1"
 
 
 if [ -f ~/.bash_prompt ]; then
     . ~/.bash_prompt
 fi
-
