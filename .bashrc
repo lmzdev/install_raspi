@@ -76,14 +76,15 @@ linuxlogo -F "$(whoami)@#H\n$(lsb_release -ds)\n#U\nCPU Temp: ${ctemp:5}"
 echo " "$(date +"%d.%m.%y - %H:%M ")" " |  toilet -f term --filter border
 unset ctemp
 
-# create a static PS1 if there is no .bash_prompt to be sourced
-PS1="${debian_chroot:+[$debian_chroot] }$COL_PRIM\w${PROMPT_SYM}"
-PS1="\[\e]0; \u@\h: \w\a\]$PS1"
-
+# Source fzf keybindings if installed
 if command -v fzf > /dev/null ; then
   . /usr/share/doc/fzf/examples/key-bindings.bash
 fi
 
+# create a static PS1 if there is no .bash_prompt to be sourced
 if [ -f ~/.bash_prompt ]; then
     . ~/.bash_prompt
+else 
+   PS1="${debian_chroot:+[$debian_chroot] }$COL_PRIM\w${PROMPT_SYM}"
+   PS1="\[\e]0; \u@\h: \w\a\]$PS1"
 fi
