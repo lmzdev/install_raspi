@@ -104,7 +104,7 @@ read -p "$C>Install minimal Raspbian-Desktop (~1.5 GB)? [Y/n] $NC" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    sudo apt-get -y install raspberrypi-ui-mods xinit
+    sudo apt-get -y install raspberrypi-ui-mods xinit lightdm
     sudo apt-get -y install firefox-esr mousepad gstreamer1.0-x gstreamer1.0-omx gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-alsa gstreamer1.0-libav qpdfview gtk2-engines alsa-utils \
         omxplayer raspberrypi-artwork policykit-1 gvfs rfkill chromium-browser rpi-chromium-mods gldriver-test fonts-droid-fallback fonts-liberation2 obconf arandr gparted lxterminal pi-package
 fi
