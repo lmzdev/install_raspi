@@ -53,11 +53,11 @@ echo "$C>Installing new Packages...$NC"
 sudo apt-get -y -q install dnsutils vim build-essential mc apt-transport-https net-tools nmap toilet linuxlogo highlight htop tty-clock fzf git git-lfs curl wget zsh
 
 
-read -p "$C>Install python3, pip3 and GPIO dependencies? [Y/n] $NC" -n 1 -r
+read -p "$C>Install additional Python/Python3 dependencies? [Y/n] $NC" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    sudo apt-get -y install python3-pip python-smbus wiringpi pigpio python-pigpio python3-pigpio python-gpiozero python3-gpiozero python3-rpi.gpio i2c-tools python3-venv
+    sudo apt-get -y install python3-pip python-smbus python3-smbus wiringpi pigpio python-pigpio python3-pigpio python-gpiozero python3-gpiozero python3-rpi.gpio i2c-tools python3-venv
     python --version
     python3 --version
     echo
