@@ -94,10 +94,8 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]];then
     # if you run into errors, check if your apt proxy allows/bypasses https:// urls
     sudo apt-get -y install gnupg2
-    INSTALL_KEY=379CE192D401AB61
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $INSTALL_KEY
-    echo "deb https://ookla.bintray.com/debian generic main" | sudo tee  /etc/apt/sources.list.d/speedtest.list
-    sudo apt-get -qq update && sudo apt-get -y install speedtest
+    curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
+    sudo apt-get -y install speedtest
 fi
 
 read -p "$C>Install minimal Raspbian-Desktop (~1.5 GB)? [Y/n] $NC" -n 1 -r
