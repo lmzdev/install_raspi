@@ -50,7 +50,7 @@ fi
 
 echo
 echo "$C>Installing new Packages...$NC"
-sudo apt-get -y -q install dnsutils vim build-essential mc apt-transport-https net-tools nmap toilet linuxlogo highlight htop tty-clock fzf git git-lfs curl wget zsh
+sudo apt-get -y -q install dnsutils vim build-essential mc apt-transport-https net-tools traceroute nmap toilet linuxlogo highlight htop tty-clock fzf git git-lfs curl wget zsh
 
 
 read -p "$C>Install additional Python/Python3 dependencies? [Y/n] $NC" -n 1 -r
@@ -70,6 +70,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
     curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
     sudo apt-get -y install nodejs
+    sudo apt-get -y install npm
     #sudo npm i -g npm@latest
 fi
 
