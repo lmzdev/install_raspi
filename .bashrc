@@ -45,11 +45,6 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# set values for prompt
-COL_PRIM="\[`tput setaf 4`\]"
-NC="\[`tput sgr0`\]"
-PROMPT_SYM="$COL_PRIM❯$NC "
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -80,6 +75,11 @@ unset ctemp
 if command -v fzf > /dev/null ; then
   . /usr/share/doc/fzf/examples/key-bindings.bash
 fi
+
+# set values for prompt
+COL_PRIM="\[`tput setaf 4`\]"
+NC="\[`tput sgr0`\]"
+PROMPT_SYM="$COL_PRIM❯$NC "
 
 # create a static PS1 if there is no .bash_prompt to be sourced
 if [ -f ~/.bash_prompt ]; then
