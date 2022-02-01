@@ -50,7 +50,7 @@ fi
 
 echo
 echo "$C>Installing new Packages...$NC"
-sudo apt-get -y -q install dnsutils vim build-essential mc apt-transport-https net-tools traceroute nmap toilet linuxlogo highlight htop tty-clock fzf git git-lfs curl wget zsh
+sudo apt-get -y -q install dnsutils vim build-essential mc apt-transport-https net-tools traceroute nmap toilet linuxlogo highlight htop tty-clock fzf git git-lfs curl wget zsh ca-certificates screen
 
 
 read -p "$C>Install additional Python/Python3 dependencies? [Y/n] $NC" -n 1 -r
@@ -94,7 +94,6 @@ read -p "$C>Install Ookla Speedtest CLI? [Y/n] $NC" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]];then
     # if you run into errors, check if your apt proxy allows/bypasses https:// urls
-    sudo apt-get -y install gnupg2
     curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
     sudo apt-get -y install speedtest
 fi
