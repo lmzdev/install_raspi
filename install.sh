@@ -58,8 +58,8 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     sudo apt-get -y install python3-pip python3-smbus pigpio python-pigpio python3-pigpio python-gpiozero python3-gpiozero python3-rpi.gpio i2c-tools python3-venv
-    echo "Python Version: $(python --version)"
-    echo "Python3 Version: $(python3 --version)"
+    python --version
+    python3 --version
     echo
     pip3 install virtualenv paho-mqtt RPi.GPIO
 fi
