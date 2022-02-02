@@ -70,7 +70,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
     curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
     sudo apt-get -y install nodejs
-    sudo apt-get -y install npm
+    #sudo apt-get -y install npm
     #sudo npm i -g npm@latest
 fi
 
