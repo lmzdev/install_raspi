@@ -1,5 +1,5 @@
 # Raspberry Pi install.sh
-Here's my take on a 'install.sh' for fresh Raspberry Pi OS / Ubuntu installations. I use it with my own ssh-enabled and localized Raspbian Lite [pi-gen image](https://gist.github.com/lmzdev/5deeadfa508897543b1d448f1b96c3a9).
+Here's my take on a 'install.sh' for fresh Raspberry Pi OS / Ubuntu installations.~~ I use it with my own ssh-enabled and localized Raspbian Lite pi-gen image.~~ Update: Not anymore, since the official Pi Imager got pretty usable after all.
 
 This comes with handy bash_aliases and a lightweight dynamic $PS1 bash prompt.
 
