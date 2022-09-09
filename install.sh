@@ -94,7 +94,7 @@ read -p "$C>Install Ookla Speedtest CLI? [Y/n] $NC" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]];then
     # if you run into errors, check if your apt proxy allows/bypasses https:// urls
-    curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
+    curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
     sudo apt-get -y install speedtest
 fi
 
