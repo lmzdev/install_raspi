@@ -50,7 +50,7 @@ fi
 
 echo
 echo "$C>Installing new Packages...$NC"
-sudo apt-get -y -q install dnsutils vim build-essential mc apt-transport-https net-tools traceroute nmap toilet linuxlogo highlight htop tty-clock fzf git git-lfs curl wget zsh ca-certificates screen
+sudo apt-get -y -q install dnsutils vim build-essential mc apt-transport-https net-tools traceroute nmap iperf3 toilet linuxlogo highlight htop tty-clock fzf git git-lfs curl wget zsh ca-certificates screen
 
 
 read -p "$C>Install additional Python/Python3 dependencies? [Y/n] $NC" -n 1 -r
