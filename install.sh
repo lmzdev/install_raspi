@@ -98,7 +98,7 @@ if [[ $REPLY =~ ^[Yy]$ ]];then
     sudo apt-get -y install speedtest
 fi
 
-read -p "$C>Install minimal Raspbian-Desktop (~1.5 GB)? [Y/n] $NC" -n 1 -r
+read -p "$C>Install Raspbian-Desktop (~1.5 GB)? [Y/n] $NC" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
