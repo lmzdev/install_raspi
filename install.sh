@@ -141,5 +141,5 @@ if [[ "$newhost" ]]; then
     sudo sed -i "s/$hostn/$newhost/g" /etc/hostname
 fi
 
-echo "$C>Finished, please reboot and raspi-config later!$NC"
+echo "$C>Finished, please reboot!$NC"
 echo
