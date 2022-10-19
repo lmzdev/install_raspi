@@ -1,10 +1,4 @@
 #!/bin/bash
-#
-# Usage:
-# scp install.sh pi@<raspberrypi>: && ssh pi@<raspberrypi>
-# chmod +x install.sh
-#
-# and run install.sh
 
 C=`tput setaf 6`
 NC=`tput sgr0`
