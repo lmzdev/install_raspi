@@ -31,10 +31,10 @@ if [[ "$PROX" ]]; then
 fi
 
 echo "$C>Updating package lists...$NC"
-sudo apt-get -q update
+sudo DEBIAN_FRONTEND=noninteractive apt-get -q update
 
 echo "$C>Upgrading...$NC"
-sudo apt-get -qq -y upgrade
+sudo DEBIAN_FRONTEND=noninteractive apt-get -qq -y upgrade
 
 echo
 echo "$C>Prerequisites...$NC"
@@ -50,10 +50,10 @@ fi
 
 echo
 echo "$C>Installing new Packages...$NC"
-sudo apt-get -y -q install dnsutils vim build-essential mc apt-transport-https net-tools traceroute nmap iperf3 toilet linuxlogo highlight htop tty-clock fzf git git-lfs curl wget zsh ca-certificates screen
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y -q install dnsutils vim build-essential mc apt-transport-https net-tools traceroute nmap iperf3 toilet linuxlogo highlight htop tty-clock fzf git git-lfs curl wget zsh ca-certificates screen
 
-sudo apt-get -y install python3-smbus pigpio python-pigpio python3-pigpio python-gpiozero python3-gpiozero python3-rpi.gpio RPi.GPIO i2c-tools
-sudo apt-get -y install python3-pip  python3-venv
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install python3-smbus pigpio python-pigpio python3-pigpio python-gpiozero python3-gpiozero python3-rpi.gpio RPi.GPIO i2c-tools
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install python3-pip  python3-venv
 python --version
 python3 --version
  
@@ -63,7 +63,7 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-    sudo apt-get -y install nodejs
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y install nodejs
     #sudo apt-get -y install npm
     #sudo npm i -g npm@latest
 fi
@@ -72,16 +72,16 @@ read -p "$C>Install Java JDK (OpenJDK 11)? [Y/n] $NC" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    sudo apt-get -y install openjdk-11-jdk
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y install openjdk-11-jdk
 fi
 
 read -p "$C>Install cockpit (Web-Admin)? [Y/n] $NC" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    sudo apt-get -y install cockpit
-    sudo apt-get -y remove cockpit-packagekit # does not work -> remove
-    sudo apt-get -y autoremove
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y install cockpit
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y remove cockpit-packagekit # does not work -> remove
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y autoremove
 fi
 
 read -p "$C>Install Ookla Speedtest CLI? [Y/n] $NC" -n 1 -r
@@ -89,15 +89,15 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]];then
     # if you run into errors, check if your apt proxy allows/bypasses https:// urls
     curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
-    sudo apt-get -y install speedtest
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y install speedtest
 fi
 
 read -p "$C>Install Raspbian-Desktop (~1.5 GB)? [Y/n] $NC" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    sudo apt-get -y install raspberrypi-ui-mods xinit lightdm
-    sudo apt-get -y install firefox-esr mousepad gstreamer1.0-x gstreamer1.0-omx gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-alsa gstreamer1.0-libav qpdfview gtk2-engines alsa-utils \
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y install raspberrypi-ui-mods xinit lightdm
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y install firefox-esr mousepad gstreamer1.0-x gstreamer1.0-omx gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-alsa gstreamer1.0-libav qpdfview gtk2-engines alsa-utils \
         omxplayer raspberrypi-artwork policykit-1 gvfs rfkill chromium-browser rpi-chromium-mods gldriver-test fonts-droid-fallback fonts-liberation2 obconf arandr gparted lxterminal pi-package
 fi
 
